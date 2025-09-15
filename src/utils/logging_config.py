@@ -5,7 +5,13 @@ import logging.handlers
 from pathlib import Path
 from typing import Optional
 
-from ..config.config import config
+import sys
+from pathlib import Path
+
+# Add the parent directory to the path to allow imports
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from config.config import config
 
 
 def setup_logging(
