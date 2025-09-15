@@ -193,7 +193,7 @@ class JobData(BaseModel):
 
         return (
             f"{self.position} at {self.company_name} "
-            f"({self.experience_level.value} level)"
+            f"({self.experience_level} level)"
             + (f" - Key skills: {skills_summary}" if skills_summary else "")
         )
 
@@ -248,7 +248,7 @@ class JobData(BaseModel):
         return (
             f"JobData(company_name='{self.company_name}', "
             f"position='{self.position}', "
-            f"experience_level='{self.experience_level.value}', "
+            f"experience_level='{self.experience_level}', "
             f"skills_count={len(self.skills_required)}, "
             f"requirements_count={len(self.requirements)})"
         )

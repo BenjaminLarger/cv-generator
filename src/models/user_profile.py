@@ -475,6 +475,7 @@ class UserProfile(BaseModel):
 
         for education in data.get('education', []):
             # Education dates are already handled by the model
+            pass
 
         for project in data.get('projects', []):
             if 'start_date' in project and project['start_date']:
