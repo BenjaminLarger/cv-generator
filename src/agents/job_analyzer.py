@@ -17,9 +17,13 @@ from urllib.parse import urlparse
 from openai import OpenAI
 from pydantic import ValidationError as PydanticValidationError
 
-from ..models.job_data import JobData, ExperienceLevel
-from ..utils.scraper import scrape_job_posting, validate_url, ScrapingError, ScrapingTimeoutError, ScrapingBlockedError
-from ..utils.logging_config import get_agents_logger
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from models.job_data import JobData, ExperienceLevel
+from utils.scraper import scrape_job_posting, validate_url, ScrapingError, ScrapingTimeoutError, ScrapingBlockedError
+from utils.logging_config import get_agents_logger
 
 logger = get_agents_logger()
 

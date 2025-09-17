@@ -1,0 +1,25 @@
+Full Stack Developer - StartupXYZ
+
+Join our innovative startup as a Full Stack Developer and help build the next generation of web applications.
+
+Required Skills:
+- 3+ years of full-stack development experience
+- Proficiency in JavaScript, Node.js, and React
+- Experience with databases (PostgreSQL, MongoDB)
+- Knowledge of RESTful API design
+- Familiarity with Git and agile development
+
+Nice to Have:
+- Experience with TypeScript
+- Knowledge of Docker and containerization
+- Understanding of CI/CD practices
+- Previous startup experience
+
+What You'll Do:
+- Build responsive web applications
+- Develop and maintain APIs
+- Work closely with designers and product managers
+- Participate in architectural decisions
+- Contribute to a positive team culture
+
+Remote-friendly position with flexible hours.

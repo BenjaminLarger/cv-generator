@@ -1,0 +1,27 @@
+Data Scientist - Analytics Corp
+
+We're looking for a Data Scientist to help drive data-informed decisions across our organization.
+
+Requirements:
+- Master's degree in Data Science, Statistics, or related field
+- 3+ years of experience in data analysis and machine learning
+- Strong programming skills in Python or R
+- Experience with SQL and database systems
+- Knowledge of statistical modeling and hypothesis testing
+- Excellent communication and visualization skills
+
+Technical Skills:
+- Python (pandas, scikit-learn, matplotlib)
+- SQL and database management
+- Machine learning algorithms
+- Data visualization tools
+- Statistical analysis
+
+Responsibilities:
+- Analyze large datasets to identify trends and insights
+- Build predictive models and algorithms
+- Create data visualizations and reports
+- Collaborate with stakeholders to define metrics
+- Present findings to executive leadership
+
+Competitive compensation package with growth opportunities.

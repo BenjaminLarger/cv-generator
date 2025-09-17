@@ -1,0 +1,20 @@
+Senior Software Engineer - TechFlow Inc.
+
+We are seeking a Senior Software Engineer to join our dynamic team in San Francisco.
+
+Requirements:
+- Bachelor's degree in Computer Science or related field
+- 5+ years of software development experience
+- Strong proficiency in Python, JavaScript, and React
+- Experience with cloud platforms (AWS, Azure, or GCP)
+- Knowledge of microservices architecture
+- Excellent problem-solving and communication skills
+
+Responsibilities:
+- Design and develop scalable web applications
+- Lead technical discussions and code reviews
+- Mentor junior developers
+- Collaborate with product and design teams
+- Optimize application performance and reliability
+
+We offer competitive salary, equity, and comprehensive benefits.

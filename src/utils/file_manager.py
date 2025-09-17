@@ -10,16 +10,64 @@ import json
 import logging
 from datetime import datetime, date
 from pathlib import Path
-from typing import Dict, Any, Optional, Union
+from typing import Dict, Any, Optional, Union, List
 import re
 import shutil
 
-from ..models.job_data import JobData
-from ..models.match_result import MatchResult
-from ..models.user_profile import UserProfile
-from .logging_config import get_scraping_logger
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from models.job_data import JobData
+from models.match_result import MatchResult
+from models.user_profile import UserProfile
+from utils.logging_config import get_scraping_logger
 
 logger = get_scraping_logger()
+
+
+class FileManager:
+    """File manager class for convenient access to file management functions."""
+
+    @staticmethod
+    def create_application_folder(company: str, date: Optional[str] = None, base_path: Optional[str] = None) -> str:
+        """Create application folder for a specific company."""
+        return create_application_folder(company, date, base_path)
+
+    @staticmethod
+    def generate_filename(doc_type: str, company: str, date: Optional[str] = None, extension: str = None) -> str:
+        """Generate standardized filename for documents."""
+        return generate_filename(doc_type, company, date, extension)
+
+    @staticmethod
+    def save_job_analysis(job_data: JobData, folder: str, filename: Optional[str] = None) -> str:
+        """Save job analysis data to folder."""
+        return save_job_analysis(job_data, folder, filename)
+
+    @staticmethod
+    def save_match_report(match_result: MatchResult, folder: str, filename: Optional[str] = None) -> str:
+        """Save match report to folder."""
+        return save_match_report(match_result, folder, filename)
+
+    @staticmethod
+    def save_user_profile_copy(user_profile: UserProfile, folder: str, filename: Optional[str] = None) -> str:
+        """Save user profile copy to folder."""
+        return save_user_profile_copy(user_profile, folder, filename)
+
+    @staticmethod
+    def copy_template_to_folder(template_path: str, folder: str, new_name: Optional[str] = None) -> str:
+        """Copy template to application folder."""
+        return copy_template_to_folder(template_path, folder, new_name)
+
+    @staticmethod
+    def get_application_folders(base_path: Optional[str] = None) -> List[Dict[str, Any]]:
+        """Get list of existing application folders."""
+        return get_application_folders(base_path)
+
+    @staticmethod
+    def cleanup_old_applications(base_path: Optional[str] = None, days_old: int = 90) -> int:
+        """Clean up old application folders."""
+        return cleanup_old_applications(base_path, days_old)
 
 
 class FileManagerError(Exception):
@@ -626,3 +674,111 @@ def cleanup_old_applications(base_path: Optional[str] = None, days_old: int = 90
     except Exception as e:
         logger.error(f"Error during cleanup: {e}")
         return 0
+
+
+def organize_output_files(output_files: Dict[str, str], output_directory: str) -> None:
+    """
+    Organize output files by moving them to structured directories.
+
+    Args:
+        output_files: Dictionary mapping file types to file paths
+        output_directory: Base directory for organizing files
+
+    Raises:
+        FileOperationError: If file organization fails
+    """
+    try:
+        output_path = Path(output_directory)
+        output_path.mkdir(parents=True, exist_ok=True)
+
+        logger.info(f"Organizing {len(output_files)} files in {output_directory}")
+
+        for file_type, file_path in output_files.items():
+            source_path = Path(file_path)
+            if not source_path.exists():
+                logger.warning(f"File not found: {file_path}")
+                continue
+
+            # Create organized structure: pdfs/, html/, etc.
+            if file_type.endswith('_pdf_path') or file_path.endswith('.pdf'):
+                dest_dir = output_path / "pdfs"
+            elif file_type.endswith('_html') or file_path.endswith('.html'):
+                dest_dir = output_path / "html"
+            elif file_type.endswith('_yaml') or file_path.endswith('.yaml'):
+                dest_dir = output_path / "profiles"
+            elif file_type.endswith('_json') or file_path.endswith('.json'):
+                dest_dir = output_path / "analysis"
+            else:
+                dest_dir = output_path / "misc"
+
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest_path = dest_dir / source_path.name
+
+            # Move file to organized location
+            if source_path != dest_path:
+                if dest_path.exists():
+                    # Add timestamp to avoid conflicts
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    stem = dest_path.stem
+                    suffix = dest_path.suffix
+                    dest_path = dest_dir / f"{stem}_{timestamp}{suffix}"
+
+                source_path.rename(dest_path)
+                logger.info(f"Organized {file_type}: {source_path} -> {dest_path}")
+
+        logger.info("File organization completed successfully")
+
+    except Exception as e:
+        error_msg = f"Failed to organize output files: {e}"
+        logger.error(error_msg)
+        raise FileOperationError(error_msg) from e
+
+
+def cleanup_temp_files(temp_files: List[str]) -> None:
+    """
+    Clean up temporary files and directories.
+
+    Args:
+        temp_files: List of temporary file/directory paths to remove
+
+    Raises:
+        FileOperationError: If cleanup fails
+    """
+    try:
+        if not temp_files:
+            logger.info("No temporary files to clean up")
+            return
+
+        logger.info(f"Cleaning up {len(temp_files)} temporary files/directories")
+        cleaned_count = 0
+
+        for temp_path_str in temp_files:
+            temp_path = Path(temp_path_str)
+
+            if not temp_path.exists():
+                logger.debug(f"Temp file already removed: {temp_path}")
+                continue
+
+            try:
+                if temp_path.is_file():
+                    temp_path.unlink()
+                    logger.debug(f"Removed temp file: {temp_path}")
+                elif temp_path.is_dir():
+                    shutil.rmtree(temp_path)
+                    logger.debug(f"Removed temp directory: {temp_path}")
+
+                cleaned_count += 1
+
+            except PermissionError:
+                logger.warning(f"Permission denied removing: {temp_path}")
+            except FileNotFoundError:
+                logger.debug(f"Temp file not found (already removed): {temp_path}")
+            except Exception as e:
+                logger.warning(f"Error removing {temp_path}: {e}")
+
+        logger.info(f"Cleanup completed: {cleaned_count} temporary items removed")
+
+    except Exception as e:
+        error_msg = f"Failed to cleanup temporary files: {e}"
+        logger.error(error_msg)
+        raise FileOperationError(error_msg) from e

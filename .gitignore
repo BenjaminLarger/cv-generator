@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# gz extensions
+*.gz
+
+# Demos
+*.demo_*
+
 # Distribution / packaging
 .Python
 build/
@@ -28,8 +34,8 @@ share/python-wheels/
 PIPFILE.lock
 
 # Virtual environments
-.env
-.venv
+*.env
+*.venv
 env/
 venv/
 ENV/

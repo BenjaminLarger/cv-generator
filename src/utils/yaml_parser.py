@@ -11,10 +11,38 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 from datetime import datetime, date
 
-from ..models.user_profile import UserProfile, PersonalInfo, WorkExperience, Education, Project, SocialUrls
-from .logging_config import get_scraping_logger
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from models.user_profile import UserProfile, PersonalInfo, WorkExperience, Education, Project, SocialUrls
+from utils.logging_config import get_scraping_logger
 
 logger = get_scraping_logger()
+
+
+class YAMLParser:
+    """YAML parser class for convenient access to parsing functions."""
+
+    @staticmethod
+    def load_user_profile(yaml_path: str) -> UserProfile:
+        """Load user profile from YAML file."""
+        return load_user_profile(yaml_path)
+
+    @staticmethod
+    def save_user_profile(profile: UserProfile, path: str) -> None:
+        """Save user profile to YAML file."""
+        return save_user_profile(profile, path)
+
+    @staticmethod
+    def validate_yaml_file(yaml_path: str) -> Dict[str, Any]:
+        """Validate YAML file."""
+        return validate_yaml_file(yaml_path)
+
+    @staticmethod
+    def create_sample_yaml(output_path: str) -> None:
+        """Create sample YAML file."""
+        return create_sample_yaml(output_path)
 
 
 class YamlParsingError(Exception):

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!-- FULL_NAME --> - Cover Letter</title>
+    <style>
+        /* Single-Page PDF Optimized Cover Letter Styles */
+        @page {
+            size: A4;
+            margin: 0.75in;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                font-size: 10pt;
+                line-height: 1.3;
+            }
+
+            .no-print { display: none; }
+
+            .page-break-avoid {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
+
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.4;
+            color: #333;
+            max-width: 100%;
+            margin: 0;
+            padding: 0.5in;
+            font-size: 11pt;
+        }
+
+        /* Header Section - Professional Business Format */
+        .header {
+            margin-bottom: 0.3in;
+            text-align: left;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: bold;
+            color: #000080;
+            font-family: 'Calibri', sans-serif;
+        }
+
+        .contact-info {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 0.05in;
+            line-height: 1.2;
+        }
+
+        .contact-info a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        /* Date and Company Address */
+        .date-section {
+            margin: 0.2in 0;
+            font-size: 11pt;
+        }
+
+        .company-address {
+            margin: 0.1in 0 0.2in 0;
+            font-size: 11pt;
+            line-height: 1.3;
+        }
+
+        /* Salutation */
+        .salutation {
+            margin-bottom: 0.15in;
+            font-size: 11pt;
+            font-weight: normal;
+        }
+
+        /* Content Sections - Optimized Spacing */
+        .content {
+            text-align: justify;
+            line-height: 1.4;
+        }
+
+        .content p {
+            margin: 0.12in 0;
+            font-size: 11pt;
+            text-indent: 0;
+        }
+
+        .content p:first-child {
+            margin-top: 0;
+        }
+
+        .content p:last-child {
+            margin-bottom: 0.15in;
+        }
+
+        /* Achievement List - Compact */
+        .achievements {
+            margin: 0.1in 0;
+            padding-left: 0.2in;
+        }
+
+        .achievements li {
+            font-size: 10pt;
+            line-height: 1.3;
+            margin-bottom: 0.05in;
+            list-style-type: disc;
+        }
+
+        /* Signature Section */
+        .signature {
+            margin-top: 0.2in;
+            font-weight: normal;
+        }
+
+        .signature p {
+            margin: 0.08in 0;
+            font-size: 11pt;
+        }
+
+        .signature-name {
+            font-weight: bold;
+            margin-top: 0.15in;
+        }
+
+        /* Professional Formatting */
+        .paragraph {
+            text-align: justify;
+            margin-bottom: 0.12in;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        /* Emphasis for key points */
+        .highlight {
+            font-weight: 600;
+            color: #000080;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 8.5in) {
+            body {
+                padding: 0.3in;
+            }
+
+            .content p {
+                font-size: 10pt;
+            }
+        }
+
+        /* Ensure single page constraint */
+        .content-wrapper {
+            max-height: 9in; /* Conservative height for A4 with margins */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <!-- Header -->
+        <div class="header">
+            <h1><!-- FULL_NAME --></h1>
+            <div class="contact-info">
+                <div>Email: <a href="mailto:<!-- EMAIL -->"><!-- EMAIL --></a> | Phone: <!-- PHONE --></div>
+                <div>LinkedIn: <a href="<!-- LINKEDIN_URL -->"><!-- LINKEDIN_URL --></a></div>
+                <div><!-- LOCATION --></div>
+            </div>
+        </div>
+
+        <!-- Date -->
+        <div class="date-section">
+            <p><!-- INSERT_DATE --></p>
+        </div>
+
+        <!-- Company Address -->
+        <div class="company-address">
+            <p>Hiring Manager<br>
+            <!-- INSERT_COMPANY_NAME --><br>
+            </p>
+        </div>
+
+        <!-- Salutation -->
+        <div class="salutation">
+            <p>Dear Hiring Manager,</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Opening Paragraph -->
+            <p class="paragraph">
+                I am writing to express my strong interest in the <span class="highlight"><!-- INSERT_JOB_TITLE --></span> position at <span class="highlight"><!-- INSERT_COMPANY_NAME --></span>. <!-- OPENING_PARAGRAPH -->
+            </p>
+
+            <!-- Experience Match Paragraph -->
+            <p class="paragraph">
+                <!-- EXPERIENCE_MATCH_PARAGRAPH --> My proven track record includes:
+            </p>
+
+            <!-- Achievement List - Compact Format -->
+            <ul class="achievements">
+                <li><!-- INSERT_ACHIEVEMENT_1 --></li>
+                <li><!-- INSERT_ACHIEVEMENT_2 --></li>
+                <li><!-- INSERT_ACHIEVEMENT_3 --></li>
+            </ul>
+
+            <!-- Skills Paragraph -->
+            <p class="paragraph">
+                <!-- SKILLS_PARAGRAPH --> My technical expertise in <span class="highlight"><!-- INSERT_RELEVANT_SKILLS --></span> directly aligns with your requirements and would enable immediate contribution to your team's objectives.
+            </p>
+
+            <!-- Company Interest Paragraph -->
+            <p class="paragraph">
+                What particularly excites me about the opportunity at <span class="highlight"><!-- INSERT_COMPANY_NAME --></span> is <!-- INSERT_SPECIFIC_DETAIL_ABOUT_COMPANY -->. I am drawn to this role because <!-- INSERT_REASON_DRAWN_TO_ROLE -->, and I am eager to contribute to <!-- INSERT_SPECIFIC_PROJECT_OR_GOAL -->.
+            </p>
+
+            <!-- Closing Paragraph -->
+            <p class="paragraph">
+                <!-- CLOSING_PARAGRAPH --> I would welcome the opportunity to discuss how my background, skills, and enthusiasm can contribute to your team's continued success.
+            </p>
+
+            <p class="paragraph">
+                Thank you for considering my application. I look forward to hearing from you soon.
+            </p>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature">
+            <p>Sincerely,</p>
+            <p class="signature-name"><!-- FULL_NAME --></p>
+        </div>
+    </div>
+</body>
+</html>
